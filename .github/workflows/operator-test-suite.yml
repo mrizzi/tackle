@@ -20,6 +20,10 @@ on:
         required: true
         default: 'upstream-community-operators'
 
+env:
+  OPP_DEBUG: 1
+  OPP_CONTAINER_OPT: "-t"
+
 jobs:
   community-operators-test-suite:
     runs-on: ubuntu-latest
