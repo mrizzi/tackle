@@ -35,6 +35,10 @@ jobs:
       name: "lemon / Deploy from scratch"
       runs-on: ubuntu-latest
       steps:
+        - name: Checkout tools repo
+          uses: actions/checkout@v2
+          with:
+            repository: k8s-operatorhub/community-operators
         - name: Operator test
           env:
             OP_TEST_DEBUG: 3
