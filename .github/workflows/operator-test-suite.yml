@@ -30,3 +30,14 @@ jobs:
       - run: bash <(curl -sL https://cutt.ly/WhkV76k) ${{ matrix.testType }} ${{ github.event.inputs.communityOperatorsRepository }}/tackle-operator/${{ github.event.inputs.version }} https://github.com/${{ github.event.inputs.repositoryUser }}/community-operators ${{ github.event.inputs.repositoryBranch }}
         shell: 'script -q -e -c "bash {0}"'
         name: Test Suite
+
+  test-lemon:
+      name: "lemon / Deploy from scratch"
+      runs-on: ubuntu-latest
+      steps:
+        - name: Operator test
+          env:
+            OP_TEST_DEBUG: 3
+          run: |
+            echo "lemon operators"
+            bash <(curl -sL $OPP_SCRIPT_URL) lemon "operators/tackle-operator/1.0.0"
