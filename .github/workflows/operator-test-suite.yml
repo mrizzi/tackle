@@ -40,4 +40,4 @@ jobs:
             OP_TEST_DEBUG: 3
           run: |
             echo "lemon operators"
-            bash <(curl -sL $OPP_SCRIPT_URL) lemon "operators/tackle-operator/1.0.0"
+            bash <(curl -sL https://raw.githubusercontent.com/redhat-openshift-ecosystem/community-operators-pipeline/ci/latest/ci/scripts/opp.sh) lemon "operators/tackle-operator/1.0.0"
