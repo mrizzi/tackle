@@ -6,7 +6,7 @@ on:
       version:
         description: 'Tackle Operator version'
         required: true
-        default: '1.0.0'
+        default: '1.1.0'
       repositoryUser:
         description: 'Repository username'
         required: true
@@ -14,11 +14,11 @@ on:
       repositoryBranch:
         description: 'Repository branch'
         required: true
-        default: 'tackle-upstream-1.0.0'
+        default: 'tackle-1.1.0'
       communityOperatorsRepository:
         description: 'Community Operators repository'
         required: true
-        default: 'upstream-community-operators'
+        default: 'operators'
 
 env:
   OPP_DEBUG: 1
@@ -49,3 +49,18 @@ jobs:
           run: |
             echo "lemon operators"
             bash <(curl -sL https://raw.githubusercontent.com/redhat-openshift-ecosystem/community-operators-pipeline/ci/latest/ci/scripts/opp.sh) lemon "operators/tackle-operator/1.0.0"
+
+  test-lemon-2:
+      name: "lemon / Deploy from 110"
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout tools repo
+          uses: actions/checkout@v2
+          with:
+            repository: k8s-operatorhub/community-operators
+        - name: Operator test
+          env:
+            OP_TEST_DEBUG: 3
+          run: |
+            echo "lemon operators"
+            bash <(curl -sL https://raw.githubusercontent.com/redhat-openshift-ecosystem/community-operators-pipeline/ci/latest/ci/scripts/opp.sh) lemon "operators/tackle-operator/1.1.0" "mrizzi/community-operators" "tackle-1.1.0"
